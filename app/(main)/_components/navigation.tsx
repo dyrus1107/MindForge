@@ -6,10 +6,13 @@ import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const documents = useQuery(api.documents.get);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -17,20 +20,20 @@ export const Navigation = () => {
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
-useEffect(() => {
-  if(isMobile) {
-    collapse();
-  } else {
-    resetWidth()
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [isMobile])
-useEffect(() => {
-  if (isMobile) {
-    collapse();
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [pathname, isMobile]);
+  useEffect(() => {
+    if (isMobile) {
+      collapse();
+    } else {
+      resetWidth();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile]);
+  useEffect(() => {
+    if (isMobile) {
+      collapse();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, isMobile]);
 
   const handleMouseDown = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -114,10 +117,12 @@ useEffect(() => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-          <UserItem/>
+          <UserItem />
         </div>
         <div className="mt-4">
-          <p>Documents</p>
+          {documents?.map(document => (
+            <p key={document._id}>{document.title}</p>
+          ))}
         </div>
         <div
           onMouseDown={handleMouseDown}
