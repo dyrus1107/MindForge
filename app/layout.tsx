@@ -8,7 +8,7 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mind forge",
+  title: "Mind Forge",
   description: "The connected workspace where better, faster work happens",
   icons: {
     icon: [
