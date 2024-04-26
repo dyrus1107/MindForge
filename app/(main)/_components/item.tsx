@@ -32,10 +32,10 @@ interface ItemProps {
   expanded?: boolean;
   isSearch?: boolean;
   level?: number;
-  onExpand?: () => void;
   label: string;
-  onClick: () => void;
   icon: LucideIcon;
+  onExpand?: () => void;
+  onClick?: () => void;
 }
 
 const Item = ({
