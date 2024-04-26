@@ -5,7 +5,6 @@ import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 
 import { PlusCircle } from "lucide-react";
-
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
