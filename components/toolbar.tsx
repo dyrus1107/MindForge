@@ -10,7 +10,7 @@ import { IconPicker } from "./icon-picker";
 import { ImageIcon, Smile, X } from "lucide-react";
 import { Button } from "./ui/button";
 import TextAreaAutosize from "react-textarea-autosize";
-import { useCoverImage } from "@/hooks/use-user-image";
+import { useCoverImage } from "@/hooks/use-cover-image";
 
 interface ToolbarProps {
   initialData: Doc<"documents">;

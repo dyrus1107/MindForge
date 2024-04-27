@@ -6,7 +6,7 @@ import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";
 
 import { useEdgeStore } from "@/lib/edgestore";
-import { useCoverImage } from "@/hooks/use-user-image";
+import { useCoverImage } from "@/hooks/use-cover-image";
 import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { SingleImageDropzone } from "@/components/single-image-dropzone";
 import { Id } from "@/convex/_generated/dataModel";
@@ -33,6 +33,9 @@ export const CoverImageModal = () => {
 
       const res = await edgestore.publicFiles.upload({
         file,
+        options: {
+          replaceTargetUrl: coverImage.url,
+        },
       });
 
       await update({
