@@ -45,7 +45,7 @@ export const SearchCommand = () => {
 
   const onSelect = (id: string) => {
     console.log("asdsa");
-    
+
     router.push(`/documents/${id}`);
     onClose();
   };
@@ -65,7 +65,7 @@ export const SearchCommand = () => {
               key={document._id}
               value={`${document._id}-${document.title}`}
               title={document.title}
-              onClick={onSelect}
+              onSelect={onSelect}
             >
               {document.icon ? (
                 <p className="mr-2 text-[18px]">{document.icon}</p>
