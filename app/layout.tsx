@@ -11,7 +11,7 @@ import { EdgeStoreProvider } from "@/lib/edgestore";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mind Forge",
+  title: "MindForge",
   description: "The connected workspace where better, faster work happens",
   icons: {
     icon: [
@@ -44,7 +44,7 @@ export default function RootLayout({
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange
-              storageKey="jotion-theme"
+              storageKey="mindforge-theme"
             >
               <Toaster position="bottom-center" />
               <ModalProvider />
