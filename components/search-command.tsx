@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { File } from "lucide-react";
-import { useUser } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/clerk-react";
 
 import {
   CommandDialog,
@@ -23,8 +23,8 @@ export const SearchCommand = () => {
   const documents = useQuery(api.documents.getSearch);
   const [isMounted, setIsMounted] = useState(false);
 
-  const isOpen = useSearch(store => store.isOpen);
   const toggle = useSearch(store => store.toggle);
+  const isOpen = useSearch(store => store.isOpen);
   const onClose = useSearch(store => store.onClose);
 
   useEffect(() => {
@@ -44,21 +44,17 @@ export const SearchCommand = () => {
   }, [toggle]);
 
   const onSelect = (id: string) => {
-    console.log("asdsa");
-
     router.push(`/documents/${id}`);
     onClose();
   };
 
-  if (!isMounted) {
-    return null;
-  }
+  if (!isMounted) return null;
 
   return (
     <CommandDialog open={isOpen} onOpenChange={onClose}>
       <CommandInput placeholder={`Search ${user?.fullName}'s MindForge...`} />
       <CommandList>
-        <CommandEmpty>No results found</CommandEmpty>
+        <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Documents">
           {documents?.map(document => (
             <CommandItem
